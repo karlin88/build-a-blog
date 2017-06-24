@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog</title>
+    <style type="text/css">
+        h1 {
+            padding-top: 10px;
+            text-align: center;
+        }
+        div {
+            border-bottom: thick solid black;
+        }
+        .postbreak {
+            padding-top: 20px;
+            border-bottom: solid black;
+        }
+        #subt {
+            font-style: italic;
+        }
+        body {
+            color: black;
+            font-family: Arial;
+            margin-left: 30%;
+            margin-right: 30%;
+        }
+        img {
+            width: 100%;
+        }
+        a { text-decoration : none; color : #000; }
+    </style>
+</head>
+
+<body>
+    <div>
+    <h1>
+        <a href="/">Blog</a>
+    </h1>
+    </div>
+
+    {% block content %} {% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if blog|length > 0 %}
+
+    {% for blogpost in blog: %}
+    <div class="postbreak">
+        <h2>
+            {{ blogpost.blogtitle }}
+        </h2>
+        <img src="{{ blogpost.imagepath }}" alt="{{ blogpost.blogtitle }}">
+        <p>
+            {{ blogpost.body }}
+        </p>
+    </div>
+    {% endfor %}
+
+{% endif %}
+
+{% endblock %}
