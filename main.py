@@ -27,6 +27,9 @@ class Blog(db.Model):
 def get_blogs():
     return Blog.query.order_by(Blog.id.desc()).all()
 
+def get_singleblog(blogid):
+    return Blog.query.filter_by(id=blogid)
+
 '''class HashTags(db.Model):
     id = db.Column(db.Integer, primary_key = True, unique = True)
     hash_name = db.Column(db.String(120))
@@ -45,7 +48,12 @@ class BlogPostHashTags(db.Model):
 
 @app.route("/")
 def index():
-    return render_template('blog.html', blog = get_blogs())
+    blogpost = request.args.get("id")
+    if blogpost is None:
+        blogs = get_blogs()
+    else:
+        blogs = get_singleblog(blogpost)
+    return render_template('blog.html', blog = blogs)
 
 @app.route("/newpost")
 def newblogform():

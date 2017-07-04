@@ -1,22 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% if blog|length > 0 %}
-
-    {% for blogpost in blog: %}
-    <div class="postbreak">
-        <h2>
-            <a href="/blog?=id={{ blogpost.id }}" >
+ {% for blogpost in blog: %}
+<div class="postbreak">
+    <h2>
+        <a href="{{ url_for('index', id=blogpost.id) }}">
             {{ blogpost.blogtitle }}
             </a>
-        </h2>
-        <img src="{{ blogpost.imagepath }}" alt="{{ blogpost.blogtitle }}">
-        <p>
-            {{ blogpost.body }}
-        </p>
-    </div>
-    {% endfor %}
+    </h2>
+    <img src="{{ blogpost.imagepath }}" alt="{{ blogpost.blogtitle }}">
+    <p>
+        {{ blogpost.body }}
+    </p>
+</div>
+{% endfor %}
 
-{% endif %}
 
 {% endblock %}
