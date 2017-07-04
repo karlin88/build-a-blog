@@ -6,7 +6,9 @@
     {% for blogpost in blog: %}
     <div class="postbreak">
         <h2>
+            <a href="/blog?=id={{ blogpost.id }}" >
             {{ blogpost.blogtitle }}
+            </a>
         </h2>
         <img src="{{ blogpost.imagepath }}" alt="{{ blogpost.blogtitle }}">
         <p>
