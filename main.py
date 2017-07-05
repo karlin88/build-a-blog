@@ -28,22 +28,7 @@ def get_blogs():
     return Blog.query.order_by(Blog.id.desc()).all()
 
 def get_singleblog(blogid):
-    return Blog.query.filter_by(id=blogid)
-
-'''class HashTags(db.Model):
-    id = db.Column(db.Integer, primary_key = True, unique = True)
-    hash_name = db.Column(db.String(120))
-
-    def __init__(self,hash_name):
-        self.hash_name = hash_name
-
-class BlogPostHashTags(db.Model):
-    hash_id = db.Column(db.Integer, db.ForeignKey('HashTags.id'))
-    blog_id = db.Column(db.Integer, db.ForeignKey('Blog.id'))
-    
-    def __init__(self,hash_id,blog_id):
-        self.hash_id = hash_id
-        self.blog_id = blog_id'''
+    return Blog.query.filter_by(id = blogid)
 
 
 @app.route("/")
@@ -69,8 +54,8 @@ def add_post():
     db.session.add(blog)
     db.session.commit()
     
-    return render_template('blog.html', blog = get_blogs())
-    #return redirect ("/")
+    #return render_template('blog.html', blog = get_blogs())
+    return redirect ("/?id=" + str(blog.id))
 
 
 if __name__ == "__main__":
