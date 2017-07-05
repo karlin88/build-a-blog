@@ -24,12 +24,24 @@ class Blog(db.Model):
     def __repr__(self):
         return '<Blog %r>' % self.blogtitle
 
+
 def get_blogs():
     return Blog.query.order_by(Blog.id.desc()).all()
 
 def get_singleblog(blogid):
     return Blog.query.filter_by(id = blogid)
 
+def doesnotexist(string):
+    if not string or string.strip() == "":
+        return True
+    else:
+        return False
+
+def convertstrtoblank(string):
+    if string is None:
+        return ''
+    else:
+        return string
 
 @app.route("/")
 def index():
@@ -50,12 +62,23 @@ def add_post():
     postbody = request.form['body']
     image = request.form['imagepath']
 
-    blog = Blog(title, postbody, image)
-    db.session.add(blog)
-    db.session.commit()
+    if doesnotexist(title):
+        t_error = "Please fill in the title"
+    
+    if doesnotexist(postbody):
+        b_error = "Please fill in the body"
     
     #return render_template('blog.html', blog = get_blogs())
-    return redirect ("/?id=" + str(blog.id))
+    if doesnotexist(t_error) and doesnotexist(b_error):
+        blog = Blog(title, postbody, image)
+        db.session.add(blog)
+        db.session.commit()
+        return redirect ("/?id=" + str(blog.id))
+    else:
+        return render_template('newpost.html',
+            title_error = convertstrtoblank(t_error),
+            body_error = convertstrtoblank(b_error)
+        )
 
 
 if __name__ == "__main__":

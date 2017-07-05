@@ -5,10 +5,12 @@
     <div id="form"> 
         Title: <br>
         <input type ="text" name="blogtitle" class="span" />
+        <p class="error">{{ title_error }}</p>
     </div>
     <div id="form">
         Blog Post:
         <textarea name="body"></textarea>
+        <p class="error">{{ body_error }}</p>
     </div>
     <div id="form">
         Static Image URL:
