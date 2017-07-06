@@ -61,6 +61,8 @@ def add_post():
     title = request.form['blogtitle']
     postbody = request.form['body']
     image = request.form['imagepath']
+    t_error = ""
+    b_error = ""
 
     if doesnotexist(title):
         t_error = "Please fill in the title"
